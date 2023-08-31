@@ -1,0 +1,26 @@
+/* MyAvatar.css */
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100px; Adjust the height as needed */
+  }
+  
+  .avatar-circle {
+    width: 55px; /* Adjust the width and height to create a circular shape */
+    height: 55px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+  
+  .avatar-image {
+    width: 90%; /* Adjust the image size to fit inside the circle */
+    height: auto;
+    border-radius: 50%;
+  }
+  

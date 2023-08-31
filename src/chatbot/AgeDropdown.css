@@ -1,0 +1,10 @@
+.selectAge{
+    color: #322d2d;
+    background-color: rgb(224, 219, 219);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 2px solid #322d2d;
+    cursor: pointer;
+    margin-left: 3.8rem;
+    font-weight: 600;
+}

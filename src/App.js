@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Chatbot from "react-chatbot-kit";
+import "react-chatbot-kit/build/main.css";
+import config from "./chatbot/config";
+import MessageParser from "./chatbot/MessageParser";
+import ActionProvider from "./chatbot/ActionProvider";
+import "./App.css";
+import EnrollPage from "./EnrollPage";
+import ConfirmationPage from "./ConfirmationPage";
+import {useSelector} from 'react-redux';
 
-function App() {
+const App = () => {
+
+  const {showConfirmation } = useSelector((state) => state.studentInfo);
+  const [showEnrollPage, setShowEnrollPage] = useState(true);
+
+   const showEnrollhandler=(value)=>{
+       setShowEnrollPage(value);
+   }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!showConfirmation &&showEnrollPage && <EnrollPage showhandle={showEnrollhandler} />}
+      {!showConfirmation&&!showEnrollPage && (
+        <Chatbot
+          config={config}
+          messageParser={MessageParser}
+          actionProvider={ActionProvider}
+        />
+      )}
+      {showConfirmation&&<ConfirmationPage/>}
+      
     </div>
   );
-}
+};
 
 export default App;
