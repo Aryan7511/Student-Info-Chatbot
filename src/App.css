@@ -30,6 +30,10 @@
   border-bottom-right-radius: 4px;
 }
 
+  .react-chatbot-kit-chat-input-container {
+    display: none;
+  }
+
 
 .react-chatbot-kit-user-chat-message {
   background-color: #cecece;
@@ -42,4 +46,23 @@
 
 .react-chatbot-kit-user-avatar-container {
   background-color: #00536e;  
+}
+
+.react-chatbot-kit-chat-message-container {
+  overflow: hidden;
+}
+
+.showfoot{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dash{
+  font-size: 1rem;
+   font-weight: bold;
+}
+
+.counter {
+  color: rgb(0, 135, 117);
+  padding-bottom: 4px;
 }

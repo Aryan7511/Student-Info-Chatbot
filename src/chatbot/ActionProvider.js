@@ -3,6 +3,7 @@ import { createClientMessage } from "react-chatbot-kit";
 import { useDispatch } from "react-redux";
 import { studentActions } from "../studentInfoSlice";
 
+let counter = 5;
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const dispatch = useDispatch();
   // console.log(children);
@@ -12,14 +13,24 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const afterNameMessage = () => {
+    document.getElementsByClassName(
+      "react-chatbot-kit-chat-input-container"
+    )[0].style.display = "none";
     const message = createChatBotMessage("Enter your Age", {
       widget: "ageDropdown",
     });
     updateState(message);
   };
 
-
   const afterAgeSelection = async (age) => {
+    document.getElementsByClassName(
+      "react-chatbot-kit-chat-input-container"
+    )[0].style.display = "flex";
+
+    document.getElementsByClassName(
+      "react-chatbot-kit-chat-input-container"
+    )[0].innerHTML = "";
+
     dispatch(studentActions.setAge(age));
     const messages = children.props.children.props.state.messages;
     console.log(messages);
@@ -35,9 +46,22 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     updateState(message);
     const thankYouMessage = createChatBotMessage("Thank you.");
     updateState(thankYouMessage);
-    await setInterval(() => {
-      dispatch(studentActions.setShowConfirmation());
-    }, 3000);
+    let interval = setInterval(() => {
+      if (counter === -1) {
+        clearInterval(interval);
+        dispatch(studentActions.setShowConfirmation());
+      }
+      // console.log(counter);
+      document.getElementsByClassName(
+        "react-chatbot-kit-chat-input-container"
+      )[0].innerHTML = `
+      <div class= "showfoot">
+      <p class="dash">Redirecting to the dashboard</p>
+      <p class ="counter"> in ${counter} seconds</p>
+      </div>
+      `;
+      counter--;
+    }, 1000);
   };
 
   const updateState = (message, checker = "") => {

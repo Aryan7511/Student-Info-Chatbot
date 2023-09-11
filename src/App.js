@@ -7,29 +7,29 @@ import ActionProvider from "./chatbot/ActionProvider";
 import "./App.css";
 import EnrollPage from "./EnrollPage";
 import ConfirmationPage from "./ConfirmationPage";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 
 const App = () => {
-
-  const {showConfirmation } = useSelector((state) => state.studentInfo);
+  const { showConfirmation } = useSelector((state) => state.studentInfo);
   const [showEnrollPage, setShowEnrollPage] = useState(true);
 
-   const showEnrollhandler=(value)=>{
-       setShowEnrollPage(value);
-   }
+  const showEnrollhandler = (value) => {
+    setShowEnrollPage(value);
+  };
 
   return (
     <div className="App">
-      {!showConfirmation &&showEnrollPage && <EnrollPage showhandle={showEnrollhandler} />}
-      {!showConfirmation&&!showEnrollPage && (
+      {!showConfirmation && showEnrollPage && (
+        <EnrollPage showhandle={showEnrollhandler} />
+      )}
+      {!showConfirmation && !showEnrollPage && (
         <Chatbot
           config={config}
           messageParser={MessageParser}
           actionProvider={ActionProvider}
         />
       )}
-      {showConfirmation&&<ConfirmationPage/>}
-      
+      {showConfirmation && <ConfirmationPage />}
     </div>
   );
 };
